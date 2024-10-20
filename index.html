@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auréa Perfume</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Sticky Navbar Highlight on Scroll
+            $(window).scroll(function () {
+                var scrollPos = $(document).scrollTop();
+
+                $('.navbar ul li a').each(function () {
+                    var sectionOffset = $($(this).attr('href')).offset().top - 60; // Adjust based on your navbar height
+                    if (scrollPos >= sectionOffset) {
+                        $('.navbar ul li a').removeClass('active');
+                        $(this).addClass('active');
+                    }
+                });
+
+                // Show/hide scroll-up button when scrolling
+                if ($(this).scrollTop() > 300) {
+                    $('#scrollUpButton').fadeIn();
+                } else {
+                    $('#scrollUpButton').fadeOut();
+                }
+            });
+
+            // Smooth scroll and trigger animation refresh on navbar click
+            $('a[href*="#"]').on('click', function (event) {
+                event.preventDefault();
+                var target = this.hash;
+
+                // Smooth scroll
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top
+                }, 800, function () {
+                    // Jika bagian produk diklik, maka refresh animasinya
+                    if (target === "#products") {
+                        resetProductAnimations();
+                    }
+                    triggerAnimation($(target), true); // Force re-trigger animation when clicking navbar
+                });
+
+                // Remove old active class and add new one
+                $('.navbar ul li a').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Function to trigger animation on section
+            function triggerAnimation($section, force) {
+                if (!$section.hasClass('animated') || force) {
+                    // Apply animation class only if it hasn't been animated or force is true (when clicking navbar)
+                    $section.addClass('animated'); // Mark section as animated to prevent re-trigger
+
+                    $section.removeClass('animate__animated animate__slideInDown animate__fadeInLeft animate__fadeInRight animate__fadeInUpBig'); // Reset animations
+
+                    // Reset animation by forcing browser reflow/repaint
+                    setTimeout(function () {
+                        if ($section.is('.about')) {
+                            $section.addClass('animate__animated animate__fadeInLeft'); // Custom animation for about section
+                        } else if ($section.is('.products')) {
+                            $section.addClass('animate__animated animate__fadeInRight animate__delay2s');
+                        } else if ($section.is('.contact')) {
+                            $section.addClass('animate__animated animate__fadeInUpBig'); // Custom animation for products section
+                        } else {
+                            $section.addClass('animate__animated animate__slideInDown'); // Default animation for other sections
+                        }
+                    }, 100); // Delay to ensure animation resets properly
+                }
+            }
+
+            // Function to reset animations for products
+            function resetProductAnimations() {
+                $('.product').each(function (index) {
+                    var delay = 2 + Math.floor(index / 3); // Mengatur delay animasi bertahap untuk setiap produk
+                    $(this).removeClass('animate__animated animate__zoomIn animate__delay-' + delay + 's'); // Remove existing animations
+
+                    // Re-add animation with delay
+                    setTimeout(() => {
+                        $(this).addClass('animate__animated animate__zoomIn animate__delay-' + delay + 's');
+                    }, 100); // Reset with small delay
+                });
+            }
+
+            // Intersection Observer for scroll-triggered animations
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null, // Uses the viewport as the container
+                threshold: 0.3 // Trigger when 30% of the section is visible
+            };
+
+            const observer = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !$(entry.target).hasClass('animated')) {
+                        // Trigger animation when section first comes into view and hasn't been animated
+                        triggerAnimation($(entry.target), false); // No forced animation for scrolling
+                    }
+                });
+            }, observerOptions);
+
+            // Observe each section
+            sections.forEach(function (section) {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Auréa</h1>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home" class="active">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero section">
+        <h2>Selamat Datang di Auréa Parfume</h2>
+        <p>Temukan esensi kemewahan dan keanggunan dengan koleksi parfum eksklusif kami.</p>
+        <a href="#products" class="button animate__animated animate__zoomIn animate__delay-1s">Jelajahi Produk</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <h2>Tentang Kami</h2>
+        <p>Auréa Parfume adalah penyedia parfum berkualitas tinggi yang menangkap esensi keanggunan dan kecanggihan.
+            Misi kami adalah untuk memberikan pengalaman wewangian yang tak terlupakan di setiap botolnya.</p>
+        <p>Didirikan pada tahun 2024, kami berusaha keras untuk menciptakan parfum yang mewujudkan keindahan, kemewahan,
+            dan inovasi.</p>
+        <p>Di Auréa Parfume, setiap aroma dibuat dengan bahan-bahan terbaik, memastikan perjalanan wewangian yang tahan
+            lama dan tak terlupakan bagi para pelanggan kami.</p>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products section">
+        <h2 style="color: #F05A7E;">Koleksi Parfum Kami</h2>
+        <div class="product-grid">
+            <div class="product animate__animated animate__zoomIn animate__delay-2s">
+                <img src="images/parfume1.jpeg" alt="Perfume 1">
+                <h3>Rose Delight</h3>
+                <p>Perpaduan lembut kelopak mawar dan musk.</p>
+                <p>Rp. 49.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-2s">
+                <img src="images/parfume2.jpeg" alt="Perfume 2">
+                <h3>Ocean Breeze</h3>
+                <p>Aroma air yang segar dengan sedikit aroma jeruk.</p>
+                <p>Rp. 49.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-2s">
+                <img src="images/parfume3.jpeg" alt="Perfume 3">
+                <h3>Vanilla Mystique</h3>
+                <p>Vanila yang hangat dengan nada dasar kayu cendana.</p>
+                <p>Rp. 49.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-3s">
+                <img src="images/parfume4.jpeg" alt="Perfume 3">
+                <h3>Moonlight Serenade</h3>
+                <p>Moonlight Serenade adalah simfoni malam yang memikat, menggabungkan kelembutan lavender dengan
+                    kekuatan bergamot.</p>
+                <p>Rp. 99.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-3s">
+                <img src="images/parfume5.jpeg" alt="Perfume 3">
+                <h3>Heavenly Blossom</h3>
+                <p>Perpaduan sempurna antara kelopak bunga magnolia yang manis dan aroma sandalwood yang hangat.</p>
+                <p>Rp. 99.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-3s">
+                <img src="images/parfume6.jpeg" alt="Perfume 3">
+                <h3>Velvet Temptation</h3>
+                <p>Dibuat dari vanila madagaskar yang lembut dan sentuhan cendana, parfum ini membawa kesan sensualitas
+                    yang hangat.</p>
+                <p>Rp. 99.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-4s">
+                <img src="images/parfume7.jpeg" alt="Perfume 3">
+                <h3>Citrus Breeze</h3>
+                <p>Citrus Breeze menghadirkan semburan kesegaran lemon segar dan jeruk bali yang dipadukan dengan
+                    sedikit aroma mint yang menyegarkan.</p>
+                <p>Rp. 149.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-4s">
+                <img src="images/parfume8.jpeg" alt="Perfume 3">
+                <h3>Mystic Amber</h3>
+                <p>Mystic Amber menyajikan perpaduan eksotis dari amber hangat dan patchouli yang mempesona.</p>
+                <p>Rp. 149.999</p>
+            </div>
+            <div class="product animate__animated animate__zoomIn animate__delay-4s">
+                <img src="images/parfume9.jpeg" alt="Perfume 3">
+                <h3>Golden Sunrise</h3>
+                <p>Golden Sunrise membawa kehangatan dan sinar matahari pagi ke dalam kehidupan Anda. Dengan perpaduan
+                    aroma hangat dari madu, kayu cedar, dan sedikit bunga jeruk, parfum ini memancarkan kehangatan, rasa
+                    nyaman, dan optimism yang cerah, seperti matahari terbit di pagi hari yang baru.</p>
+                <p>Rp. 149.999</p>
+            </div>
+            <!-- Tambahkan produk lainnya -->
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <h2>Hubungi Kami</h2>
+        <form action="index.html#contact" method="POST">
+            <label for="name">Nama Anda:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Anda:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Pesan Anda:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Kirim Pesan</button>
+        </form>
+    </section>
+    <!-- Scroll Up Button -->
+    <a href="#home" class="scroll-up" id="scrollUpButton">
+        &#8679;
+    </a>
+
+    <footer>
+        <p>&copy; 2024 Auréa Perfume. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
