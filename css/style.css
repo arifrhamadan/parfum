@@ -66,7 +66,7 @@ header .logo h1 {
 }
 
 .navbar ul li a.active {
-  color: #fafafa;
+  color: #333;
 }
 
 .navbar ul li a:hover {
@@ -252,6 +252,13 @@ body.dark-mode {
 
 header.dark-mode {
   background-color: #333;
+}
+.navbar.dark-mode ul li a.active {
+  color: #f05a7e;
+}
+
+.navbar.dark-mode ul li a:hover {
+  color: #fff;
 }
 
 footer.dark-mode {

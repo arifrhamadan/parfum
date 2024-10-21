@@ -113,6 +113,7 @@ $(document).ready(function () {
   $("#darkModeToggle").on("click", function () {
     $("body").toggleClass("dark-mode");
     $("header").toggleClass("dark-mode");
+    $(".navbar").toggleClass("dark-mode");
     $("footer").toggleClass("dark-mode");
     $(".hero").toggleClass("dark-mode");
     $(".about").toggleClass("dark-mode");
