@@ -17,6 +17,7 @@ $(document).ready(function () {
     }
   });
 
+  // Smooth scroll to section with animation when clicking navbar links
   $('a[href*="#"]').on("click", function (event) {
     event.preventDefault();
     var target = this.hash;
@@ -28,8 +29,9 @@ $(document).ready(function () {
       800,
       function () {
         if (target === "#products") {
-          resetProductAnimations();
+          resetProductAnimations(); // Reset and trigger animations for products
         }
+        // Trigger animation for the section when navigating from navbar
         triggerAnimation($(target), true);
       }
     );
@@ -38,6 +40,7 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
+  // Trigger animation for sections including h2
   function triggerAnimation($section, force) {
     if (!$section.hasClass("animated") || force) {
       $section.addClass("animated");
@@ -49,43 +52,50 @@ $(document).ready(function () {
         if ($section.is(".about")) {
           $section.addClass("animate__animated animate__fadeInUp");
         } else if ($section.is(".products")) {
-          $section.addClass(
-            "animate__animated animate__lightSpeedInLeft"
-          );
+          // Animate h2 (Koleksi Parfum Kami)
+          $section.find("h2").addClass("animate__animated animate__fadeInUp");
+          resetProductAnimations(); // Trigger product animations
         } else if ($section.is(".contact")) {
           $section.addClass("animate__animated animate__slideInUp");
         } else {
-          $section.addClass("animate__animated animate__pulse"); 
+          $section.addClass("animate__animated animate__pulse");
         }
       }, 100);
     }
   }
 
+  // Reset and animate products one by one
   function resetProductAnimations() {
     $(".product").each(function (index) {
-      var delay = 1 + Math.floor(index / 3);
+      var delay = 1 + index * 0.5; // Add delay per product, showing one by one
+      // Shorter delay for mobile
+      if ($(window).width() <= 768) {
+        delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
+      }
+
       $(this).removeClass(
         "animate__animated animate__zoomIn animate__delay-" + delay + "s"
       );
 
       setTimeout(() => {
         $(this).addClass(
-          "animate__animated animate__zoomIn animate__delay-" + delay + "s"
-        );
+          "animate__animated animate__zoomIn"
+        ).css('animation-delay', delay + 's');
       }, 100);
     });
   }
 
+  // IntersectionObserver for section animations
   const sections = document.querySelectorAll("section");
   const observerOptions = {
     root: null, 
-    threshold: 0.3, 
+    threshold: window.innerWidth <= 768 ? 0.1 : 0.3, 
   };
 
   const observer = new IntersectionObserver(function (entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting && !$(entry.target).hasClass("animated")) {
-        triggerAnimation($(entry.target), false); 
+        triggerAnimation($(entry.target), false);
       }
     });
   }, observerOptions);
@@ -94,6 +104,7 @@ $(document).ready(function () {
     observer.observe(section);
   });
 });
+
 
 $(document).ready(function () {
   $("#darkModeToggle").on("click", function () {

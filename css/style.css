@@ -369,7 +369,7 @@ footer {
 .scroll-up {
   position: fixed;
   bottom: 2rem;
-  right: 2rem;
+  right: 1px;
   background-color: #f05a7e;
   color: #e0e0e0;
   padding: 1rem;
