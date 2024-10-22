@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auréa Parfume</title>
+    <title>Éclatia Parfume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
@@ -16,25 +17,36 @@
   <body>
     <header>
       <div class="logo">
-        <h1>Auréa</h1>
+        <h1>Éclatia</h1>
         <a href="javascript:void(0);" id="darkModeToggle">
           <span id="darkModeIcon">🌙</span>
-          <!-- Default icon is moon -->
         </a>
       </div>
       <nav class="navbar">
-        <ul>
+        <ul class="nav-list">
           <li><a href="#home" class="active">Beranda</a></li>
           <li><a href="#about">Tentang</a></li>
           <li><a href="#products">Produk</a></li>
           <li><a href="#contact">Kontak</a></li>
         </ul>
+        <div class="hamburger-menu" id="hamburgerMenu">
+          &#9776;
+        </div>
       </nav>
     </header>
 
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#products">Produk</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero section">
-      <h2>Selamat Datang di Auréa Parfume</h2>
+      <h2>Selamat Datang di Éclatia Parfume</h2>
       <p>
         Temukan esensi kemewahan dan keanggunan dengan koleksi parfum eksklusif
         kami.
@@ -50,7 +62,7 @@
     <section id="about" class="about section">
       <h2>Tentang Kami</h2>
       <p>
-        Auréa Parfume adalah penyedia parfum berkualitas tinggi yang menangkap
+        Éclatia Parfume adalah penyedia parfum berkualitas tinggi yang menangkap
         esensi keanggunan dan kecanggihan. Misi kami adalah untuk memberikan
         pengalaman wewangian yang tak terlupakan di setiap botolnya.
       </p>
@@ -59,7 +71,7 @@
         yang mewujudkan keindahan, kemewahan, dan inovasi.
       </p>
       <p>
-        Di Auréa Parfume, setiap aroma dibuat dengan bahan-bahan terbaik,
+        Di Éclatia Parfume, setiap aroma dibuat dengan bahan-bahan terbaik,
         memastikan perjalanan wewangian yang tahan lama dan tak terlupakan bagi
         para pelanggan kami.
       </p>
@@ -69,102 +81,107 @@
     <section id="products" class="products section">
       <h2 style="color: #f05a7e">Koleksi Parfum Kami</h2>
       <div class="product-grid">
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-1s"
-        >
-          <img src="images/parfume1.jpeg" alt="Perfume 1" />
+        <div class="product">
+          <img src="images/parfume1.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Rose Delight</h3>
-          <p>Perpaduan lembut kelopak mawar dan musk.</p>
-          <p>Rp. 49.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Perpaduan lembut kelopak mawar dan musk.</p>
+            <p><strong>Type:</strong> WOMAN / 100ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 3 - 4 Jam</p>
+            <p><strong>Harga:</strong> Rp. 49.999</p>
+          </div>
+          
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-1s"
-        >
-          <img src="images/parfume2.jpeg" alt="Perfume 2" />
+        <div class="product">
+          <img src="images/parfume2.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Ocean Breeze</h3>
-          <p>Aroma air yang segar dengan sedikit aroma jeruk.</p>
-          <p>Rp. 49.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Aroma air yang segar dengan sedikit aroma jeruk.</p>
+            <p><strong>Type:</strong> WOMAN / 100ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 3 - 4 Jam</p>
+            <p><strong>Harga:</strong> Rp. 49.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-1s"
-        >
-          <img src="images/parfume3.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume3.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Vanilla Mystique</h3>
-          <p>Vanila yang hangat dengan nada dasar kayu cendana.</p>
-          <p>Rp. 49.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Vanila yang hangat dengan nada dasar kayu cendana.</p>
+            <p><strong>Type:</strong> WOMAN / 100ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 3 - 4 Jam</p>
+            <p><strong>Harga:</strong> Rp. 49.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-2s"
-        >
-          <img src="images/parfume4.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume4.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Moonlight Serenade</h3>
-          <p>
-            Moonlight Serenade adalah simfoni malam yang memikat, menggabungkan
-            kelembutan lavender dengan kekuatan bergamot.
-          </p>
-          <p>Rp. 99.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Menggabungkan
+              kelembutan lavender dengan kekuatan bergamot.</p>
+            <p><strong>Type:</strong> MAN / 100ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 6 - 8 Jam</p>
+            <p><strong>Harga:</strong> Rp. 99.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-2s"
-        >
-          <img src="images/parfume5.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume5.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Heavenly Blossom</h3>
-          <p>
-            Perpaduan sempurna antara kelopak bunga magnolia yang manis dan
-            aroma sandalwood yang hangat.
-          </p>
-          <p>Rp. 99.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Perpaduan sempurna antara kelopak bunga magnolia yang manis dan
+              aroma sandalwood yang hangat.</p>
+            <p><strong>Type:</strong> MAN / 100ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 6 - 8 Jam</p>
+            <p><strong>Harga:</strong> Rp. 99.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-2s"
-        >
-          <img src="images/parfume6.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume6.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Velvet Temptation</h3>
-          <p>
-            Dibuat dari vanila madagaskar yang lembut dan sentuhan cendana,
-            parfum ini membawa kesan sensualitas yang hangat.
-          </p>
-          <p>Rp. 99.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Dibuat dari vanila madagaskar yang lembut dan sentuhan cendana,
+              parfum ini membawa kesan sensualitas yang hangat.</p>
+            <p><strong>Type:</strong> MAN / 100ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 6 - 8 Jam</p>
+            <p><strong>Harga:</strong> Rp. 99.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-3s"
-        >
-          <img src="images/parfume7.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume7.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Citrus Breeze</h3>
-          <p>
-            Citrus Breeze menghadirkan semburan kesegaran lemon segar dan jeruk
-            bali yang dipadukan dengan sedikit aroma mint yang menyegarkan.
-          </p>
-          <p>Rp. 149.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Kesegaran lemon segar dan jeruk
+              bali yang dipadukan dengan sedikit aroma mint yang menyegarkan.</p>
+            <p><strong>Type:</strong> Unisex / 120ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 10 - 12 Jam</p>
+            <p><strong>Harga:</strong> Rp. 149.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-3s"
-        >
-          <img src="images/parfume8.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume8.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Mystic Amber</h3>
-          <p>
-            Mystic Amber menyajikan perpaduan eksotis dari amber hangat dan
-            patchouli yang mempesona.
-          </p>
-          <p>Rp. 149.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Perpaduan eksotis dari amber hangat dan
+              patchouli yang mempesona.</p>
+            <p><strong>Type:</strong> Unisex / 120ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 10 - 12 Jam</p>
+            <p><strong>Harga:</strong> Rp. 149.999</p>
+          </div>
         </div>
-        <div
-          class="product animate__animated animate__zoomIn animate__delay-3s"
-        >
-          <img src="images/parfume9.jpeg" alt="Perfume 3" />
+        <div class="product">
+          <img src="images/parfume9.jpeg" alt="Perfume 1" onclick="showInfo(this)" />
           <h3>Golden Sunrise</h3>
-          <p>
-            Golden Sunrise membawa kehangatan dan sinar matahari pagi ke dalam
-            kehidupan Anda. Dengan perpaduan aroma hangat dari madu, kayu cedar,
-            dan sedikit bunga jeruk, parfum ini memancarkan kehangatan, rasa
-            nyaman, dan optimism yang cerah, seperti matahari terbit di pagi
-            hari yang baru.
-          </p>
-          <p>Rp. 149.999</p>
+          <div class="more-info" style="display: none;" onclick="hideInfo(this)">
+            <p><strong>Komposisi:</strong> Dengan perpaduan aroma hangat dari madu, kayu cedar,
+              dan sedikit bunga jeruk.</p>
+            <p><strong>Type:</strong> Unisex / 120ml | Eau De Parfum</p>
+            <p><strong>Ketahanan:</strong> 10 - 12 Jam</p>
+            <p><strong>Harga:</strong> Rp. 149.999</p>
+          </div>
         </div>
-        <!-- Tambahkan produk lainnya -->
+        <!-- Tambahkan produk lainnya dengan format yang sama -->
       </div>
     </section>
+    
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -186,7 +203,27 @@
     <a href="#home" class="scroll-up" id="scrollUpButton"> &#8679; </a>
 
     <footer>
-      <p>&copy; 2024 Auréa Perfume. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>Éclatia Parfume</h2>
+          <p>&copy; 2024 Éclatia Parfume. All rights reserved.</p>
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" class="social-icon">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" class="social-icon">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" aria-label="Twitter" class="social-icon">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn" class="social-icon">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
     </footer>
+    
   </body>
 </html>

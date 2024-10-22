@@ -16,26 +16,37 @@ section {
 }
 
 /* Sticky Navbar */
+/* Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff3f0;
+  color: #333;
+  overflow-x: hidden; /* Mencegah halaman bisa digeser horizontal */
+}
+
+/* Sticky Navbar */
 header {
   position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
-  align-items: center; /* Menyelaraskan elemen di tengah secara vertikal */
+  align-items: center;
   justify-content: space-between;
   background-color: #f05a7e;
   padding: 1rem 2rem;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
 }
+
 header .logo {
   display: flex;
   align-items: center;
 }
 
 header .logo h1 {
-  margin-right: 15px;
+  margin-right: 10px;
   font-size: 2rem;
   font-family: "Georgia", serif;
 }
@@ -51,7 +62,6 @@ header .logo h1 {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-left: auto; /* Menyelaraskan navbar ke kanan */
 }
 
 .navbar ul li {
@@ -71,6 +81,46 @@ header .logo h1 {
 
 .navbar ul li a:hover {
   color: #fff;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9); /* Fullscreen transparan dengan latar belakang */
+  color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: all 0.3s ease;
+  text-align: right; /* Konten dekat dengan toggle */
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu ul li {
+  margin-bottom: 2rem;
+}
+
+.mobile-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem; /* Ukuran font lebih besar */
 }
 
 /* Hero Section */
@@ -132,6 +182,8 @@ header .logo h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 250px;
   transition: transform 0.3s ease;
+  position: relative; /* Mengatur posisi relatif agar anak-anaknya bisa menggunakan posisi absolut */
+  overflow: hidden; /* Menghindari elemen yang meluap */
 }
 
 .product:hover {
@@ -219,12 +271,67 @@ header .logo h1 {
   background-color: #d04f6d;
 }
 
-/* Footer */
+.more-info {
+  position: absolute; /* Posisi absolut agar bisa ditampilkan di depan gambar */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9); /* Latar belakang putih transparan */
+  padding: 1rem; /* Padding di sekitar teks */
+  display: flex; /* Menggunakan flexbox untuk pusatkan teks */
+  flex-direction: column; /* Susunan teks secara vertikal */
+  justify-content: center;
+  align-items: flex-start; /* Rata kiri teks */
+  border-radius: 10px; /* Radius border agar sesuai dengan gambar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Rata kiri untuk teks */
+}
+
+/* Footer Styles */
 footer {
   background-color: #f05a7e;
-  color: white;
+  color: #e0e0e0;
+  padding: 2rem 0;
   text-align: center;
-  padding: 1.5rem 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+}
+
+.footer-logo p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-socials a {
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #333;
+}
+
+.social-icon i {
+  font-size: 1.5rem;
 }
 
 /* Scroll Up Button */
@@ -318,10 +425,12 @@ footer.dark-mode {
 /* Untuk tablet dan layar yang lebih besar dari 768px */
 @media only screen and (max-width: 1024px) {
   /* Navbar */
+  .logo {
+    justify-content: center;
+    width: 100%;
+  }
   .navbar ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    display: flex;
   }
   h2 {
     font-size: 2.5rem; /* Sedikit lebih besar untuk layar sedang */
@@ -390,9 +499,23 @@ footer.dark-mode {
 /* Untuk layar handphone atau layar yang lebih kecil dari 768px */
 @media only screen and (max-width: 768px) {
   /* Navbar */
+  .logo {
+    justify-content: center;
+    width: 100%;
+  }
   .navbar ul {
-    flex-direction: column;
-    gap: 1rem;
+    display: none; /* Sembunyikan navbar link */
+  }
+
+  .hamburger-menu {
+    display: block; /* Tampilkan hamburger menu */
+  }
+
+  .mobile-menu.active {
+    margin-top: 6rem;
+    display: block; /* Tampilkan menu saat aktif */
+    height: 100vh; /* Fullscreen */
+    text-align: right; /* Konten menu dekat dengan toggle */
   }
   h2 {
     font-size: 2rem; /* Ukuran judul cukup besar untuk layar kecil */
@@ -466,5 +589,14 @@ footer.dark-mode {
     right: 1rem;
     font-size: 1.2rem;
     padding: 0.8rem;
+  }
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+    margin-top: 1rem;
   }
 }

@@ -60,7 +60,7 @@ $(document).ready(function () {
           $section.addClass("animate__animated animate__fadeInLeft"); // Custom animation for about section
         } else if ($section.is(".products")) {
           $section.addClass(
-            "animate__animated animate__fadeInRight animate__delay2s"
+            "animate__animated animate__fadeInLeft animate__delay2s"
           );
         } else if ($section.is(".contact")) {
           $section.addClass("animate__animated animate__fadeInUpBig"); // Custom animation for products section
@@ -87,6 +87,7 @@ $(document).ready(function () {
       }, 100); // Reset with small delay
     });
   }
+    
 
   // Intersection Observer for scroll-triggered animations
   const sections = document.querySelectorAll("section");
@@ -130,3 +131,39 @@ $(document).ready(function () {
     }
   });
 });
+// script.js
+$(document).ready(function () {
+  // Toggle mobile menu ketika tombol hamburger di-klik
+  $("#hamburgerMenu").click(function () {
+    $("#mobileMenu").toggleClass("active");
+    $("body").toggleClass("no-scroll"); // Mencegah scroll saat menu aktif
+  });
+
+  // Menutup menu ketika salah satu item navbar diklik
+  $("#mobileMenu a").click(function () {
+    $("#mobileMenu").removeClass("active");
+    $("body").removeClass("no-scroll");
+  });
+
+  // Menutup menu saat klik di luar menu dan hamburger
+  $(document).click(function (e) {
+    if (!$(e.target).closest("#hamburgerMenu, #mobileMenu").length) {
+      $("#mobileMenu").removeClass("active");
+      $("body").removeClass("no-scroll");
+    }
+  });
+});
+function showInfo(image) {
+  const product = image.closest('.product');
+  const moreInfo = product.querySelector('.more-info');
+
+  // Menampilkan deskripsi jika tersembunyi
+  moreInfo.style.display = 'flex';
+}
+
+function hideInfo(info) {
+  // Menyembunyikan deskripsi saat diklik
+  info.style.display = 'none';
+}
+
+
