@@ -1,32 +1,33 @@
-/* Global Styles */
 body {
   font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #fff3f0;
   color: #333;
+  overflow-x: hidden;
 }
-/* Global dark mode styles */
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+  margin-left: -10px;
+  text-decoration: none;
+}
+
+#darkModeIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
 h2 {
   margin-top: 6rem;
 }
+
 section {
-  min-height: 100vh; /* Menjamin setiap section memiliki tinggi minimal 100% dari tinggi viewport */
-  padding-bottom: 4rem; /* Menambahkan padding bawah untuk jarak antara section */
+  min-height: 100vh;
+  padding-bottom: 4rem;
 }
 
-/* Sticky Navbar */
-/* Global Styles */
-body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff3f0;
-  color: #333;
-  overflow-x: hidden; /* Mencegah halaman bisa digeser horizontal */
-}
-
-/* Sticky Navbar */
 header {
   position: sticky;
   top: 0;
@@ -80,10 +81,9 @@ header .logo h1 {
 }
 
 .navbar ul li a:hover {
-  color: #fff;
+  color: white;
 }
 
-/* Hamburger Menu */
 .hamburger-menu {
   display: none;
   font-size: 2rem;
@@ -97,13 +97,13 @@ header .logo h1 {
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9); /* Fullscreen transparan dengan latar belakang */
+  background-color: rgba(255, 255, 255, 0.85);
   color: white;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
   transition: all 0.3s ease;
-  text-align: right; /* Konten dekat dengan toggle */
+  text-align: right;
 }
 
 .mobile-menu ul {
@@ -117,13 +117,12 @@ header .logo h1 {
 }
 
 .mobile-menu ul li a {
-  color: white;
+  color: #f05a7e;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.5rem; /* Ukuran font lebih besar */
+  font-size: 1.5rem;
 }
 
-/* Hero Section */
 .hero {
   background: url("../images/hero-bg.jpg") no-repeat center center/cover;
   height: 90vh;
@@ -149,7 +148,7 @@ header .logo h1 {
 
 .hero .button {
   background-color: #f05a7e;
-  color: #e0e0e0;
+  color: white;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   text-decoration: none;
@@ -161,48 +160,6 @@ header .logo h1 {
   background-color: #f05a7e;
 }
 
-/* Products Section */
-.products {
-  padding: 4rem 2rem;
-  text-align: center;
-  background-color: #fdf3f3;
-}
-
-.product-grid {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.product {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 250px;
-  transition: transform 0.3s ease;
-  position: relative; /* Mengatur posisi relatif agar anak-anaknya bisa menggunakan posisi absolut */
-  overflow: hidden; /* Menghindari elemen yang meluap */
-}
-
-.product:hover {
-  transform: translateY(-10px);
-}
-
-.product img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-
-.product h3 {
-  font-size: 1.5rem;
-  color: #f05a7e;
-  margin-bottom: 0.5rem;
-}
-
-/* About Section */
 .about {
   padding: 4rem 2rem;
   text-align: center;
@@ -223,7 +180,64 @@ header .logo h1 {
   line-height: 1.6;
 }
 
-/* Contact Section */
+.products {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #fdf3f3;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.product {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.product:hover {
+  transform: translateY(-10px);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.product h3 {
+  font-size: 1.5rem;
+  color: #f05a7e;
+  margin-bottom: 0.5rem;
+}
+
+.more-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left; 
+  color: #333;
+}
+
 .contact {
   padding: 4rem 2rem;
   text-align: center;
@@ -271,76 +285,93 @@ header .logo h1 {
   background-color: #d04f6d;
 }
 
-.more-info {
-  position: absolute; /* Posisi absolut agar bisa ditampilkan di depan gambar */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.9); /* Latar belakang putih transparan */
-  padding: 1rem; /* Padding di sekitar teks */
-  display: flex; /* Menggunakan flexbox untuk pusatkan teks */
-  flex-direction: column; /* Susunan teks secara vertikal */
-  justify-content: center;
-  align-items: flex-start; /* Rata kiri teks */
-  border-radius: 10px; /* Radius border agar sesuai dengan gambar */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left; /* Rata kiri untuk teks */
-}
-
-/* Footer Styles */
 footer {
   background-color: #f05a7e;
-  color: #e0e0e0;
-  padding: 2rem 0;
+  color: white;
+  padding: 3rem 0 1.5rem; /* Mengurangi padding bawah untuk lebih rapat */
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Membagi menjadi tiga kolom */
+  gap: 2rem; /* Memberikan spasi antar kolom */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Menyelaraskan ke tengah */
   text-align: center;
 }
 
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer-logo h2 {
-  font-size: 1.5rem;
+.footer-left h3 {
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
-  color: #e0e0e0;
+  color: white;
 }
 
-.footer-logo p {
-  margin: 0;
-  font-size: 0.9rem;
+.footer-left p {
+  font-size: 1rem;
+  color: white;
+}
+
+.footer-center h3,
+.footer-right h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: white;
 }
 
 .footer-socials {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .footer-socials a {
-  color: #e0e0e0;
-  font-size: 1.5rem;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  color: white;
+  font-size: 1.8rem;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-socials a:hover {
   color: #333;
+  transform: scale(1.1);
 }
 
-.social-icon i {
-  font-size: 1.5rem;
+.footer-right p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: white;
 }
 
-/* Scroll Up Button */
+.footer-right a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-right a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* Copyright Section */
+.footer-copyright {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
 .scroll-up {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   background-color: #f05a7e;
-  color: white;
+  color: #e0e0e0;
   padding: 1rem;
   font-size: 1.5rem;
   border-radius: 50%;
@@ -360,22 +391,53 @@ body.dark-mode {
 header.dark-mode {
   background-color: #333;
 }
+
 .navbar.dark-mode ul li a.active {
   color: #f05a7e;
 }
 
 .navbar.dark-mode ul li a:hover {
-  color: #fff;
+  color: white;
 }
 
-footer.dark-mode {
-  background-color: #333;
+.mobile-menu.dark-mode {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: all 0.3s ease;
+  text-align: right;
+}
+
+.mobile-menu.dark-mode ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu.dark-mode ul li {
+  margin-bottom: 2rem;
+}
+
+.mobile-menu.dark-mode ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .hero.dark-mode {
   background-color: #1a1a1a;
   color: #f05a7e;
 }
+
 .hero.dark-mode p {
   color: #e0e0e0;
 }
@@ -397,6 +459,25 @@ footer.dark-mode {
 .product.dark-mode h3 {
   color: #f05a7e;
 }
+
+.more-info.dark-mode {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left; 
+  color: #e0e0e0;
+}
+
 .contact.dark-mode {
   color: #f05a7e;
 }
@@ -405,26 +486,16 @@ footer.dark-mode {
   color: #e0e0e0;
 }
 
+footer.dark-mode {
+  background-color: #333;
+}
+
 .scroll-up.dark-mode {
   background-color: #333;
 }
 
-/* Dark Mode Toggle Button */
-#darkModeToggle {
-  margin-left: -10px;
-  text-decoration: none;
-}
-
-#darkModeIcon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
 /* Responsive Styles */
-
-/* Untuk tablet dan layar yang lebih besar dari 768px */
 @media only screen and (max-width: 1024px) {
-  /* Navbar */
   .logo {
     justify-content: center;
     width: 100%;
@@ -432,14 +503,15 @@ footer.dark-mode {
   .navbar ul {
     display: flex;
   }
+
   h2 {
-    font-size: 2.5rem; /* Sedikit lebih besar untuk layar sedang */
-    color: #f05a7e; /* Warna mencolok agar tetap menonjol */
+    font-size: 2.5rem; 
+    color: #f05a7e; 
     margin-top: 6rem;
   }
-  /* Hero Section */
+
   .hero {
-    height: 75vh; /* Sedikit lebih tinggi untuk layar sedang */
+    height: 75vh; 
     margin-top: -6rem;
   }
 
@@ -456,20 +528,6 @@ footer.dark-mode {
     font-size: 1rem;
   }
 
-  /* Product Grid */
-  .product-grid {
-    gap: 1.5rem;
-  }
-
-  .product {
-    width: 220px;
-  }
-  .products h2 {
-    font-size: 2.5rem; /* Menjaga agar judul produk tetap besar dan mencolok */
-    margin-bottom: 2rem;
-  }
-
-  /* About Section */
   .about h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -479,7 +537,19 @@ footer.dark-mode {
     font-size: 1.1rem;
   }
 
-  /* Contact Section */
+  .product-grid {
+    gap: 1.5rem;
+  }
+
+  .product {
+    width: 220px;
+  }
+
+  .products h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
   .contact h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -496,9 +566,7 @@ footer.dark-mode {
   }
 }
 
-/* Untuk layar handphone atau layar yang lebih kecil dari 768px */
 @media only screen and (max-width: 768px) {
-  /* Navbar */
   .logo {
     justify-content: center;
     width: 100%;
@@ -517,13 +585,13 @@ footer.dark-mode {
     height: 100vh; /* Fullscreen */
     text-align: right; /* Konten menu dekat dengan toggle */
   }
+
   h2 {
     font-size: 2rem; /* Ukuran judul cukup besar untuk layar kecil */
     color: #f05a7e; /* Warna mencolok agar lebih menonjol */
     margin-top: 6rem;
   }
 
-  /* Hero Section */
   .hero {
     height: 70vh;
     margin-top: -6rem;
@@ -542,22 +610,6 @@ footer.dark-mode {
     font-size: 0.9rem;
   }
 
-  /* Product Grid */
-  .product-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .product {
-    width: 100%;
-    padding: 1rem;
-  }
-  .products h2 {
-    font-size: 2rem; /* Menjaga agar judul produk tetap terlihat besar */
-    margin-bottom: 1.5rem; /* Jarak yang cukup agar lebih nyaman */
-  }
-
-  /* About Section */
   .about h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -567,7 +619,21 @@ footer.dark-mode {
     font-size: 1rem;
   }
 
-  /* Contact Section */
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .product {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .products h2 {
+    font-size: 2rem; /* Menjaga agar judul produk tetap terlihat besar */
+    margin-bottom: 1.5rem; /* Jarak yang cukup agar lebih nyaman */
+  }
+
   .contact h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -583,20 +649,12 @@ footer.dark-mode {
     font-size: 0.9rem;
   }
 
-  /* Scroll Up Button */
-  .scroll-up {
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 1.2rem;
-    padding: 0.8rem;
-  }
-  .footer-content {
-    flex-direction: column;
+  .footer-container {
+    grid-template-columns: 1fr; /* Kolom menjadi satu baris */
     text-align: center;
   }
 
-  .footer-socials {
-    justify-content: center;
-    margin-top: 1rem;
+  .footer-section {
+    margin-bottom: 2rem;
   }
 }
