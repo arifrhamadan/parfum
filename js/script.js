@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // Scroll function to handle navbar active state and scroll-up button visibility
   $(window).scroll(function () {
     var scrollPos = $(document).scrollTop();
 
@@ -29,16 +30,78 @@ $(document).ready(function () {
       800,
       function () {
         if (target === "#products") {
-          resetProductAnimations(); // Reset and trigger animations for products
+          // Reset and trigger animations for the products section on click
+          resetProductSectionAnimation();
+        } else if (target === "#home") {
+          // Reset and trigger animation for the home section
+          resetHomeAnimation();
+        } else {
+          // Trigger animation for other sections
+          triggerAnimation($(target), true);
         }
-        // Trigger animation for the section when navigating from navbar
-        triggerAnimation($(target), true);
       }
     );
 
     $(".navbar ul li a").removeClass("active");
     $(this).addClass("active");
   });
+
+  // Function to reset and trigger product animations on click
+  function resetProductSectionAnimation() {
+    var $productSection = $("#products");
+    var $productTitle = $productSection.find("h2");
+
+    // Reset the animations on h2
+    $productTitle.removeClass("animate__animated animate__lightSpeedInLeft");
+
+    // Re-trigger the animation after a short delay
+    setTimeout(function () {
+      $productTitle.addClass("animate__animated animate__lightSpeedInLeft");
+    }, 100);
+
+    // Reset and trigger animations for individual products (only when clicking "Produk" on navbar)
+    resetProductAnimations();
+  }
+
+  // Function to reset and animate products one by one
+  function resetProductAnimations() {
+    $(".product").each(function (index) {
+      var delay = 1 + index * 0.5; // Add delay per product, showing one by one
+      // Shorter delay for mobile
+      if ($(window).width() <= 768) {
+        delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
+      }
+
+      $(this).removeClass(
+        "animate__animated animate__zoomIn"
+      );
+
+      setTimeout(() => {
+        $(this).addClass(
+          "animate__animated animate__zoomIn"
+        ).css('animation-delay', delay + 's');
+      }, 100);
+    });
+  }
+
+  // Function to reset animations for the home section (including button and logo)
+  function resetHomeAnimation() {
+    var $homeText = $("#home .hero-text"); // Target the animated part of the home section
+    var $homeButton = $("#home .button"); // Target the button
+    var $homeLogo = $("#home .hero-logo img"); // Target the logo
+
+    // Remove existing animations
+    $homeText.removeClass("animate__animated animate__zoomIn");
+    $homeButton.removeClass("animate__animated animate__zoomIn");
+    $homeLogo.removeClass("animate__animated animate__zoomIn");
+
+    // Re-trigger the animation after a short delay
+    setTimeout(function () {
+      $homeText.addClass("animate__animated animate__zoomIn animate__delay-1s");
+      $homeButton.addClass("animate__animated animate__zoomIn animate__delay-1s");
+      $homeLogo.addClass("animate__animated animate__zoomIn animate__delay-1s");
+    }, 100);
+  }
 
   // Trigger animation for sections including h2
   function triggerAnimation($section, force) {
@@ -51,10 +114,6 @@ $(document).ready(function () {
       setTimeout(function () {
         if ($section.is(".about")) {
           $section.addClass("animate__animated animate__fadeInUp");
-        } else if ($section.is(".products")) {
-          // Animate h2 (Koleksi Parfum Kami)
-          $section.find("h2").addClass("animate__animated animate__fadeInUp");
-          resetProductAnimations(); // Trigger product animations
         } else if ($section.is(".contact")) {
           $section.addClass("animate__animated animate__slideInUp");
         } else {
@@ -64,28 +123,7 @@ $(document).ready(function () {
     }
   }
 
-  // Reset and animate products one by one
-  function resetProductAnimations() {
-    $(".product").each(function (index) {
-      var delay = 1 + index * 0.5; // Add delay per product, showing one by one
-      // Shorter delay for mobile
-      if ($(window).width() <= 768) {
-        delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
-      }
-
-      $(this).removeClass(
-        "animate__animated animate__zoomIn animate__delay-" + delay + "s"
-      );
-
-      setTimeout(() => {
-        $(this).addClass(
-          "animate__animated animate__zoomIn"
-        ).css('animation-delay', delay + 's');
-      }, 100);
-    });
-  }
-
-  // IntersectionObserver for section animations
+  // IntersectionObserver for section animations (for scroll-triggered animations)
   const sections = document.querySelectorAll("section");
   const observerOptions = {
     root: null, 
@@ -96,6 +134,25 @@ $(document).ready(function () {
     entries.forEach(function (entry) {
       if (entry.isIntersecting && !$(entry.target).hasClass("animated")) {
         triggerAnimation($(entry.target), false);
+
+        if ($(entry.target).is("#products")) {
+          // Trigger the h2 animation on scroll
+          $(entry.target).find("h2").addClass("animate__animated animate__lightSpeedInLeft");
+          
+          // Trigger product animations one by one when section becomes visible
+          $(entry.target).find(".product").each(function (index) {
+            var delay = 1 + index * 0.5; // Delay between product animations
+            if ($(window).width() <= 768) {
+              delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
+            }
+
+            // Only animate if it hasn't already been animated
+            if (!$(this).hasClass("animate__animated")) {
+              $(this).css('animation-delay', delay + 's');
+              $(this).addClass("animate__animated animate__zoomIn");
+            }
+          });
+        }
       }
     });
   }, observerOptions);
@@ -104,6 +161,8 @@ $(document).ready(function () {
     observer.observe(section);
   });
 });
+
+
 
 
 $(document).ready(function () {
