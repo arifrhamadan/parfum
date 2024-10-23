@@ -256,9 +256,9 @@ header .logo img {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 10px; 
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left; 
+  text-align: left;
   color: #333;
 }
 
@@ -496,9 +496,9 @@ header.dark-mode {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 10px; 
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left; 
+  text-align: left;
   color: #e0e0e0;
 }
 
@@ -514,6 +514,16 @@ footer.dark-mode {
   background-color: #333;
 }
 
+.footer-socials.dark-mode a:hover {
+  color: #f05a7e;
+  transform: scale(1.1);
+}
+
+.footer-right.dark-mode a:hover {
+  color: #f05a7e;
+  text-decoration: underline;
+}
+
 .scroll-up.dark-mode {
   background-color: #333;
 }
@@ -522,29 +532,31 @@ footer.dark-mode {
 @media only screen and (max-width: 1024px) {
   .logo {
     left: 50%; /* Posisikan logo di tengah */
-    transform: translateX(-50%); /* Pastikan logo benar-benar berada di tengah */
+    transform: translateX(
+      -50%
+    ); /* Pastikan logo benar-benar berada di tengah */
     width: auto;
     position: relative; /* Tetap pertahankan ini agar elemen lain tidak terpengaruh */
   }
-  
+
   #darkModeToggle {
     position: absolute;
-    left: -120px; /* Pindahkan ke kiri */
+    left: -140px; /* Pindahkan ke kiri */
     transform: translateX(0); /* Hilangkan transform untuk posisi tengah */
   }
-  
+
   .navbar ul {
     display: flex;
   }
 
   h2 {
-    font-size: 2.5rem; 
-    color: #f05a7e; 
+    font-size: 2.5rem;
+    color: #f05a7e;
     margin-top: 6rem;
   }
 
   .hero {
-    height: 75vh; 
+    height: 75vh;
     margin-top: -6rem;
   }
 
@@ -602,14 +614,16 @@ footer.dark-mode {
 @media only screen and (max-width: 768px) {
   .logo {
     left: 50%; /* Posisikan logo di tengah */
-    transform: translateX(-50%); /* Pastikan logo benar-benar berada di tengah */
+    transform: translateX(
+      -50%
+    ); /* Pastikan logo benar-benar berada di tengah */
     width: auto;
     position: relative; /* Tetap pertahankan ini agar elemen lain tidak terpengaruh */
   }
-  
+
   #darkModeToggle {
     position: absolute;
-    left: -120px; /* Pindahkan ke kiri */
+    left: -140px; /* Pindahkan ke kiri */
     transform: translateX(0); /* Hilangkan transform untuk posisi tengah */
   }
 

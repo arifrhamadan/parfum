@@ -72,14 +72,12 @@ $(document).ready(function () {
         delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
       }
 
-      $(this).removeClass(
-        "animate__animated animate__zoomIn"
-      );
+      $(this).removeClass("animate__animated animate__zoomIn");
 
       setTimeout(() => {
-        $(this).addClass(
-          "animate__animated animate__zoomIn"
-        ).css('animation-delay', delay + 's');
+        $(this)
+          .addClass("animate__animated animate__zoomIn")
+          .css("animation-delay", delay + "s");
       }, 100);
     });
   }
@@ -98,7 +96,9 @@ $(document).ready(function () {
     // Re-trigger the animation after a short delay
     setTimeout(function () {
       $homeText.addClass("animate__animated animate__zoomIn animate__delay-1s");
-      $homeButton.addClass("animate__animated animate__zoomIn animate__delay-1s");
+      $homeButton.addClass(
+        "animate__animated animate__zoomIn animate__delay-1s"
+      );
       $homeLogo.addClass("animate__animated animate__zoomIn animate__delay-1s");
     }, 100);
   }
@@ -126,8 +126,8 @@ $(document).ready(function () {
   // IntersectionObserver for section animations (for scroll-triggered animations)
   const sections = document.querySelectorAll("section");
   const observerOptions = {
-    root: null, 
-    threshold: window.innerWidth <= 768 ? 0.1 : 0.3, 
+    root: null,
+    threshold: window.innerWidth <= 768 ? 0.1 : 0.3,
   };
 
   const observer = new IntersectionObserver(function (entries, observer) {
@@ -137,21 +137,25 @@ $(document).ready(function () {
 
         if ($(entry.target).is("#products")) {
           // Trigger the h2 animation on scroll
-          $(entry.target).find("h2").addClass("animate__animated animate__lightSpeedInLeft");
-          
-          // Trigger product animations one by one when section becomes visible
-          $(entry.target).find(".product").each(function (index) {
-            var delay = 1 + index * 0.5; // Delay between product animations
-            if ($(window).width() <= 768) {
-              delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
-            }
+          $(entry.target)
+            .find("h2")
+            .addClass("animate__animated animate__lightSpeedInLeft");
 
-            // Only animate if it hasn't already been animated
-            if (!$(this).hasClass("animate__animated")) {
-              $(this).css('animation-delay', delay + 's');
-              $(this).addClass("animate__animated animate__zoomIn");
-            }
-          });
+          // Trigger product animations one by one when section becomes visible
+          $(entry.target)
+            .find(".product")
+            .each(function (index) {
+              var delay = 1 + index * 0.5; // Delay between product animations
+              if ($(window).width() <= 768) {
+                delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
+              }
+
+              // Only animate if it hasn't already been animated
+              if (!$(this).hasClass("animate__animated")) {
+                $(this).css("animation-delay", delay + "s");
+                $(this).addClass("animate__animated animate__zoomIn");
+              }
+            });
         }
       }
     });
@@ -161,9 +165,6 @@ $(document).ready(function () {
     observer.observe(section);
   });
 });
-
-
-
 
 $(document).ready(function () {
   $("#darkModeToggle").on("click", function () {
@@ -179,6 +180,7 @@ $(document).ready(function () {
     $(".product").toggleClass("dark-mode");
     $(".mobile-menu").toggleClass("dark-mode");
     $(".more-info").toggleClass("dark-mode");
+    $(".footer-socials, .footer-right").toggleClass("dark-mode");
 
     if ($("body").hasClass("dark-mode")) {
       $("#darkModeIcon").text("🌞");
@@ -189,7 +191,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-
   $("#hamburgerMenu").click(function () {
     $("#mobileMenu").toggleClass("active");
     $("body").toggleClass("no-scroll");
