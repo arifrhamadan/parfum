@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Scroll function to handle navbar active state and scroll-up button visibility
+
   $(window).scroll(function () {
     var scrollPos = $(document).scrollTop();
 
@@ -30,13 +30,10 @@ $(document).ready(function () {
       800,
       function () {
         if (target === "#products") {
-          // Reset and trigger animations for the products section on click
           resetProductSectionAnimation();
         } else if (target === "#home") {
-          // Reset and trigger animation for the home section
           resetHomeAnimation();
         } else {
-          // Trigger animation for other sections
           triggerAnimation($(target), true);
         }
       }
@@ -46,7 +43,7 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
-  // Function to reset and trigger product animations on click
+
   function resetProductSectionAnimation() {
     var $productSection = $("#products");
     var $productTitle = $productSection.find("h2");
@@ -59,17 +56,14 @@ $(document).ready(function () {
       $productTitle.addClass("animate__animated animate__lightSpeedInLeft");
     }, 100);
 
-    // Reset and trigger animations for individual products (only when clicking "Produk" on navbar)
     resetProductAnimations();
   }
 
-  // Function to reset and animate products one by one
   function resetProductAnimations() {
     $(".product").each(function (index) {
-      var delay = 1 + index * 0.5; // Add delay per product, showing one by one
-      // Shorter delay for mobile
+      var delay = 1 + index * 0.5; 
       if ($(window).width() <= 768) {
-        delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
+        delay = 0.5 + index * 0.3; 
       }
 
       $(this).removeClass("animate__animated animate__zoomIn");
@@ -82,28 +76,23 @@ $(document).ready(function () {
     });
   }
 
-  // Function to reset animations for the home section (including button and logo)
   function resetHomeAnimation() {
-    var $homeText = $("#home .hero-text"); // Target the animated part of the home section
-    var $homeButton = $("#home .button"); // Target the button
-    var $homeLogo = $("#home .hero-logo img"); // Target the logo
+    var $homeText = $("#home .hero-text"); 
+    var $homeButton = $("#home .button"); 
+    var $homeLogo = $("#home .hero-logo img"); 
 
     // Remove existing animations
     $homeText.removeClass("animate__animated animate__zoomIn");
     $homeButton.removeClass("animate__animated animate__zoomIn");
     $homeLogo.removeClass("animate__animated animate__zoomIn");
 
-    // Re-trigger the animation after a short delay
     setTimeout(function () {
-      $homeText.addClass("animate__animated animate__zoomIn animate__delay-1s");
-      $homeButton.addClass(
-        "animate__animated animate__zoomIn animate__delay-1s"
-      );
-      $homeLogo.addClass("animate__animated animate__zoomIn animate__delay-1s");
+      $homeText.addClass("animate__animated animate__zoomIn");
+      $homeButton.addClass("animate__animated animate__zoomIn");
+      $homeLogo.addClass("animate__animated animate__zoomIn");
     }, 100);
   }
 
-  // Trigger animation for sections including h2
   function triggerAnimation($section, force) {
     if (!$section.hasClass("animated") || force) {
       $section.addClass("animated");
@@ -136,21 +125,18 @@ $(document).ready(function () {
         triggerAnimation($(entry.target), false);
 
         if ($(entry.target).is("#products")) {
-          // Trigger the h2 animation on scroll
           $(entry.target)
             .find("h2")
             .addClass("animate__animated animate__lightSpeedInLeft");
 
-          // Trigger product animations one by one when section becomes visible
           $(entry.target)
             .find(".product")
             .each(function (index) {
-              var delay = 1 + index * 0.5; // Delay between product animations
+              var delay = 1 + index * 0.5; 
               if ($(window).width() <= 768) {
-                delay = 0.5 + index * 0.3; // Adjust delay for smaller screens
+                delay = 0.5 + index * 0.3; 
               }
 
-              // Only animate if it hasn't already been animated
               if (!$(this).hasClass("animate__animated")) {
                 $(this).css("animation-delay", delay + "s");
                 $(this).addClass("animate__animated animate__zoomIn");

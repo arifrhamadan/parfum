@@ -20,7 +20,7 @@ section {
 #darkModeToggle {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* Menempatkan dark mode icon di tengah */
+  transform: translateX(-50%);
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -98,7 +98,7 @@ header .logo img {
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.95);
   color: white;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -312,14 +312,14 @@ header .logo img {
 footer {
   background-color: #f05a7e;
   color: white;
-  padding: 3rem 0 1.5rem; /* Mengurangi padding bawah untuk lebih rapat */
+  padding: 3rem 0 1.5rem;
   font-family: Arial, sans-serif;
 }
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Membagi menjadi tiga kolom */
-  gap: 2rem; /* Memberikan spasi antar kolom */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -328,7 +328,7 @@ footer {
 .footer-section {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Menyelaraskan ke tengah */
+  align-items: center; 
   text-align: center;
 }
 
@@ -431,7 +431,7 @@ header.dark-mode {
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -531,22 +531,36 @@ footer.dark-mode {
 /* Responsive Styles */
 @media only screen and (max-width: 1024px) {
   .logo {
-    left: 50%; /* Posisikan logo di tengah */
-    transform: translateX(
-      -50%
-    ); /* Pastikan logo benar-benar berada di tengah */
+    left: 50%; 
+    transform: translateX(-50%);
     width: auto;
-    position: relative; /* Tetap pertahankan ini agar elemen lain tidak terpengaruh */
+    position: relative;
   }
 
   #darkModeToggle {
     position: absolute;
-    left: -140px; /* Pindahkan ke kiri */
-    transform: translateX(0); /* Hilangkan transform untuk posisi tengah */
+    left: -430px; 
+    top: 10px;
+    transform: translateX(0); 
   }
 
   .navbar ul {
+    display: none;
+    flex-direction: column;
+    background-color: #f05a7e;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar ul.show {
     display: flex;
+  }
+
+  .hamburger-menu {
+    display: block;
   }
 
   h2 {
@@ -613,18 +627,19 @@ footer.dark-mode {
 
 @media only screen and (max-width: 768px) {
   .logo {
-    left: 50%; /* Posisikan logo di tengah */
+    left: 50%; 
     transform: translateX(
       -50%
-    ); /* Pastikan logo benar-benar berada di tengah */
+    ); 
     width: auto;
-    position: relative; /* Tetap pertahankan ini agar elemen lain tidak terpengaruh */
+    position: relative; 
   }
 
   #darkModeToggle {
     position: absolute;
-    left: -140px; /* Pindahkan ke kiri */
-    transform: translateX(0); /* Hilangkan transform untuk posisi tengah */
+    left: -140px; 
+    top: 10px;
+    transform: translateX(0); 
   }
 
   .navbar ul {
@@ -648,14 +663,14 @@ footer.dark-mode {
 
   .mobile-menu.active {
     margin-top: 6rem;
-    display: block; /* Tampilkan menu saat aktif */
-    height: 100vh; /* Fullscreen */
-    text-align: right; /* Konten menu dekat dengan toggle */
+    display: block; 
+    height: 100vh;
+    text-align: right; 
   }
 
   h2 {
-    font-size: 2rem; /* Ukuran judul cukup besar untuk layar kecil */
-    color: #f05a7e; /* Warna mencolok agar lebih menonjol */
+    font-size: 2rem; 
+    color: #f05a7e; 
     margin-top: 6rem;
   }
 
@@ -683,7 +698,7 @@ footer.dark-mode {
   }
 
   .hero-logo {
-    order: -1; /* Menempatkan logo di atas teks */
+    order: -1; 
   }
 
   .hero-text {
@@ -715,8 +730,8 @@ footer.dark-mode {
   }
 
   .products h2 {
-    font-size: 2rem; /* Menjaga agar judul produk tetap terlihat besar */
-    margin-bottom: 1.5rem; /* Jarak yang cukup agar lebih nyaman */
+    font-size: 2rem; 
+    margin-bottom: 1.5rem; 
   }
 
   .contact h2 {
@@ -735,7 +750,7 @@ footer.dark-mode {
   }
 
   .footer-container {
-    grid-template-columns: 1fr; /* Kolom menjadi satu baris */
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
