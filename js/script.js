@@ -22,20 +22,21 @@ $(document).ready(function() {
     event.preventDefault();
     var target = this.hash;
 
+    // First trigger the animations for the target section
+    if (target === "#products") {
+      resetProductSectionAnimation();
+    } else if (target === "#home") {
+      resetHomeAnimation();
+    } else {
+      triggerAnimation($(target), true);
+    }
+
+    // After the animation completes, scroll to the target section
     $("html, body").animate(
       {
         scrollTop: $(target).offset().top,
       },
       800,
-      function() {
-        if (target === "#products") {
-          resetProductSectionAnimation();
-        } else if (target === "#home") {
-          resetHomeAnimation();
-        } else {
-          triggerAnimation($(target), true);
-        }
-      },
     );
 
     $(".navbar ul li a").removeClass("active");
@@ -73,84 +74,82 @@ $(document).ready(function() {
       }, 100);
     });
   }
-  //
-  // function resetHomeAnimation() {
-  //   var $homeText = $("#home .hero-text");
-  //   var $homeButton = $("#home .button");
-  //   var $homeLogo = $("#home .hero-logo img");
-  //
-  //   // Remove existing animations
-  //   $homeText.removeClass("animate__animated animate__zoomIn");
-  //   $homeButton.removeClass("animate__animated animate__zoomIn");
-  //   $homeLogo.removeClass("animate__animated animate__zoomIn");
-  //
-  //   setTimeout(function() {
-  //     $homeText.addClass("animate__animated animate__zoomIn");
-  //     $homeButton.addClass("animate__animated animate__zoomIn");
-  //     $homeLogo.addClass("animate__animated animate__zoomIn");
-  //   }, 100);
-  // }
-  //
-  // function triggerAnimation($section, force) {
-  //   if (!$section.hasClass("animated") || force) {
-  //     $section.addClass("animated");
-  //     $section.removeClass(
-  //       "animate__animated animate__slideInDown animate__fadeInUp animate__lightSpeedInLeft animate__slideInUp",
-  //     );
-  //
-  //     setTimeout(function() {
-  //       if ($section.is(".about")) {
-  //         $section.addClass("animate__animated animate__fadeInUp");
-  //       } else if ($section.is(".contact")) {
-  //         $section.addClass("animate__animated animate__slideInUp");
-  //       } else {
-  //         $section.addClass("animate__animated animate__pulse");
-  //       }
-  //     }, 100);
-  //   }
-  // }
-  //
+
+  function resetHomeAnimation() {
+    var $homeText = $("#home .hero-text");
+    var $homeButton = $("#home .button");
+    var $homeLogo = $("#home .hero-logo img");
+
+    // Remove existing animations
+    $homeText.removeClass("animate__animated animate__zoomIn");
+    $homeButton.removeClass("animate__animated animate__zoomIn");
+    $homeLogo.removeClass("animate__animated animate__zoomIn");
+
+    setTimeout(function() {
+      $homeText.addClass("animate__animated animate__zoomIn");
+      $homeButton.addClass("animate__animated animate__zoomIn");
+      $homeLogo.addClass("animate__animated animate__zoomIn");
+    }, 100);
+  }
+
+  function triggerAnimation($section, force) {
+    if (!$section.hasClass("animated") || force) {
+      $section.addClass("animated");
+      $section.removeClass(
+        "animate__animated animate__slideInDown animate__fadeInUp animate__lightSpeedInLeft animate__slideInUp",
+      );
+
+      setTimeout(function() {
+        if ($section.is(".about")) {
+          $section.addClass("animate__animated animate__fadeInUp");
+        } else if ($section.is(".contact")) {
+          $section.addClass("animate__animated animate__slideInUp");
+        } else {
+          $section.addClass("animate__animated animate__pulse");
+        }
+      }, 100);
+    }
+  }
+
   // IntersectionObserver for section animations (for scroll-triggered animations)
-  // const sections = document.querySelectorAll("section");
-  // const observerOptions = {
-  //   root: null,
-  //   threshold: window.innerWidth <= 768 ? 0.1 : 0.3,
-  // };
+  const sections = document.querySelectorAll("section");
+  const observerOptions = {
+    root: null,
+    threshold: window.innerWidth <= 768 ? 0.1 : 0.3,
+  };
 
-  //   const observer = new IntersectionObserver(function(entries, observer) {
-  //     entries.forEach(function(entry) {
-  //       if (entry.isIntersecting && !$(entry.target).hasClass("animated")) {
-  //         triggerAnimation($(entry.target), false);
-  //
-  //         if ($(entry.target).is("#products")) {
-  //           $(entry.target)
-  //             .find("h2")
-  //             .addClass("animate__animated animate__lightSpeedInLeft");
-  //
-  //           $(entry.target)
-  //             .find(".product")
-  //             .each(function(index) {
-  //               var delay = 1 + index * 0.5;
-  //               if ($(window).width() <= 768) {
-  //                 delay = 0.5 + index * 0.3;
-  //               }
-  //
-  //               if (!$(this).hasClass("animate__animated")) {
-  //                 $(this).css("animation-delay", delay + "s");
-  //                 $(this).addClass("animate__animated animate__zoomIn");
-  //               }
-  //             });
-  //         }
-  //       }
-  //     });
-  //   }, observerOptions);
-  //
-  //   sections.forEach(function(section) {
-  //     observer.observe(section);
-  //   });
-});
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !$(entry.target).hasClass("animated")) {
+        triggerAnimation($(entry.target), false);
 
-$(document).ready(function() {
+        if ($(entry.target).is("#products")) {
+          $(entry.target)
+            .find("section")
+            .addClass("animate__animated animate__lightSpeedInLeft");
+
+          $(entry.target)
+            .find(".product")
+            .each(function(index) {
+              var delay = 1 + index * 0.5;
+              if ($(window).width() <= 768) {
+                delay = 0.5 + index * 0.3;
+              }
+
+              if (!$(this).hasClass("animate__animated")) {
+                $(this).css("animation-delay", delay + "s");
+                $(this).addClass("animate__animated animate__zoomIn");
+              }
+            });
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(function(section) {
+    observer.observe(section);
+  });
+
   $("#darkModeToggle").on("click", function() {
     $("body").toggleClass("dark-mode");
     $("header").toggleClass("dark-mode");
@@ -166,15 +165,9 @@ $(document).ready(function() {
     $(".more-info").toggleClass("dark-mode");
     $(".footer-socials, .footer-right").toggleClass("dark-mode");
 
-    if ($("body").hasClass("dark-mode")) {
-      $("#darkModeIcon").text("🌞");
-    } else {
-      $("#darkModeIcon").text("🌙");
-    }
+    $("#darkModeIcon").text($("body").hasClass("dark-mode") ? "🌞" : "🌙");
   });
-});
 
-$(document).ready(function() {
   $("#hamburgerMenu").click(function() {
     $("#mobileMenu").toggleClass("active");
     $("body").toggleClass("no-scroll");
