@@ -529,7 +529,7 @@ footer.dark-mode {
 }
 
 /* Responsive Styles */
-@media only screen and (max-width: 1024px) {
+/* @media only screen and (max-width: 1024px) {
   .logo {
     left: 50%; 
     transform: translateX(-50%);
@@ -623,7 +623,7 @@ footer.dark-mode {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
   }
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .logo {
